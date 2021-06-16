@@ -1,6 +1,6 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Анна](https://up.htmlacademy.ru/javascript/23/user/1642989).
+* Студент: [Анна] (https://up.htmlacademy.ru/javascript/23/user/1642989).
 * Наставник: [Алексей Хабиров] (https://htmlacademy.ru/profile/alex_khab).
 
 ---
