@@ -1,3 +1,8 @@
+// improrts
+// const
+// fns / listeners
+// exe
+
 const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -18,7 +23,7 @@ const NAMES = [
   'Вашингтон',
 ];
 
-const PHOTO_DESC = [
+const PHOTO_DESCS = [
   'Дома',
   'На природе',
   'На даче',
@@ -26,13 +31,29 @@ const PHOTO_DESC = [
   'Дети',
 ];
 
-const PHOTOS_COUNT = 25;
+const photoIds = [];
 
-let photoId = [];
-let urlId = [];
-let commentId = [];
+const urlIds = [];
 
-function randomInteger(min, max) {
+const commentIds = [];
+
+const PHOTOS_COUNTS = 25;
+
+const MIN_LIKES = 15;
+
+const MAX_LIKES = 200;
+
+const MIN_AVATAR = 1;
+
+const MAX_AVATAR = 6;
+
+const MIN_COMMENT = 1;
+
+const MAX_COMMENT = 10;
+
+const MAX_STRING_LENGTH = 140;
+
+const getRandomInteger = (min, max) => {
   if (min < 0 || max < 0 || min > max) {
     throw new Error('Введенные числа должны быть положительные');
   }
@@ -42,72 +63,51 @@ function randomInteger(min, max) {
   return Math.floor(rand);
 }
 
-console.log(NAMES[randomInteger(0, NAMES.length - 1)]);
+const checkString = (text, max) => text.length <= max;
 
-const checkString = (text, max) => text.lenght <= max;
+const getRandomArrayElement = (arr) => arr[getRandomInteger(0, arr.length - 1)];
 
-console.log(checkString('anna', 140));
+const generateUniqueId = (arr, from = 1, to = 25) => {
+  let id = getRandomInteger(from, to);
 
-const getPhotoId = () => {
-  let id;
-  while (true) {
-    id = randomInteger(1, 25);
-    if (photoId.indexOf(id) === -1) {
-      photoId.push(id);
-      break;
-    }
-  }
-  return id;
-};
-
-const getPhotoUrl = () => {
-  let id;
-  while (true) {
-    id = randomInteger(1, 25);
-    if (urlId.indexOf(id) === -1) {
-      urlId.push(id);
-      break;
-    }
-  }
-  return `photos/${id}.jpg`;
-};
-
-const getCommentId = () => {
-  let id;
-  while (true) {
-    id = randomInteger(1, 1000);
-    if (commentId.indexOf(id) === -1) {
-      commentId.push(id);
-      break;
-    }
+  while (arr.includes(id)) {
+    id = getRandomInteger(from, to);
   }
   return id;
 };
 
 const getComment = () => {
   return {
-    id: getCommentId(),
-    avatar: `img/avatar-${randomInteger(1, 6)}.svg`,
-    message: COMMENTS[randomInteger(0, COMMENTS.length - 1)],
-    name: NAMES[randomInteger(0, NAMES.length - 1)],
+    id: generateUniqueId(commentIds, 1, 1000),
+    avatar: `img/avatar-${getRandomInteger(MIN_AVATAR, MAX_AVATAR)}.svg`,
+    message: getRandomArrayElement(COMMENTS),
+    name: getRandomArrayElement(NAMES),
   };
 };
 
 const getComments = () => {
-  return new Array(randomInteger(1, 10)).fill(null).map(() => getComment());
+  return new Array(getRandomInteger(MIN_COMMENT, MAX_COMMENT)).fill(null).map(() => getComment());
 };
 
 const getPhoto = () => {
   return {
-    id: getPhotoId(),
-    url: getPhotoUrl(),
-    description: PHOTO_DESC[randomInteger(0, PHOTO_DESC.length - 1)],
-    likes: randomInteger(15, 200),
+    id: generateUniqueId(photoIds),
+    url: `photos/${generateUniqueId(urlIds)}.jpg`,
+    description: getRandomArrayElement(PHOTO_DESCS),
+    likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
     comments: getComments(),
   };
 };
 
-const generatePhotos = new Array(PHOTOS_COUNT).fill(null).map(() => getPhoto());
+// const generatePhotos = () => {
+//   return new Array(PHOTOS_COUNT).fill(null).map(() => getPhoto());
+// };
+
+//mdn array map
+const generatePhotos = new Array(PHOTOS_COUNTS).fill(null).map(() => getPhoto());
 
 console.log(generatePhotos);
+
+console.log(checkString('anna', MAX_STRING_LENGTH));
+
 
