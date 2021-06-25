@@ -25,6 +25,7 @@ const generateUniqueId = (arr, from = 1, to = 25) => {
 };
 
 // Проверяет длину строки
+
 const checkString = (text, max) => text.length <= max;
 
 export {getRandomInteger, getRandomArrayElement, generateUniqueId, checkString};
