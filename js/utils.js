@@ -21,6 +21,7 @@ const generateUniqueId = (arr, from = 1, to = 25) => {
   while (arr.includes(id)) {
     id = getRandomInteger(from, to);
   }
+  arr.push(id);
   return id;
 };
 

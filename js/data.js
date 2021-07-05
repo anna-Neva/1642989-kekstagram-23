@@ -80,3 +80,4 @@ const getPhoto = () => {
 const generatePhotos = (amount) => new Array(amount).fill(null).map(() => getPhoto());
 
 export {generatePhotos};
+// export {createMiniatures};
