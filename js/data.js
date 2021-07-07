@@ -1,7 +1,7 @@
 import {
   generateUniqueId,
   getRandomArrayElement,
-  getRandomInteger,
+  getRandomInteger
 } from './utils.js';
 
 const COMMENTS = [
@@ -44,7 +44,7 @@ const MIN_COMMENT = 1;
 
 const MAX_COMMENT = 10;
 
-const MAX_STRING_LENGTH = 140;
+// const MAX_STRING_LENGTH = 140;
 
 const photoIds = [];
 
@@ -78,23 +78,6 @@ const getPhoto = () => {
 
 //Генерация всех фотографий
 const generatePhotos = (amount) => new Array(amount).fill(null).map(() => getPhoto());
+
 export {generatePhotos};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// export {createMiniatures};
