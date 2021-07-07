@@ -7,11 +7,9 @@ const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-
 const dataArray = generatePhotos(PHOTOS_AMOUNT);
 
 const renderPicture = (pictureObject) => {
-  console.log(pictureObject);
 
   const picture = pictureTemplate.cloneNode(true);
   const img = picture.querySelector('.picture__img');
@@ -28,11 +26,10 @@ const renderPicture = (pictureObject) => {
 const renderPictures = (data) => {
   const fragment = document.createDocumentFragment();
 
-  for (let i = 0; i < data.length; i++) {
-    fragment.appendChild(renderPicture(data[i]));
-  }
+  data.forEach((item => {
+    fragment.appendChild(renderPicture(item));
+  });
 
-  console.log(fragment);
   pictureBlock.appendChild(fragment);
 };
 
